@@ -123,6 +123,10 @@ fragment OrderCommon on Order {
         amount
         displayAmount
       }
+      netTotal {
+        amount
+        displayAmount
+      }
       surchargeTotal {
         amount
         displayAmount
@@ -175,6 +179,10 @@ fragment OrderCommon on Order {
       displayAmount
     }
     itemTotal {
+      amount
+      displayAmount
+    }
+    netTotal {
       amount
       displayAmount
     }

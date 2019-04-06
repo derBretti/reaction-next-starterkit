@@ -12,6 +12,9 @@ class OrderCardSummary extends Component {
       itemTotal: PropTypes.shape({
         displayAmount: PropTypes.string
       }),
+      netTotal: PropTypes.shape({
+        displayAmount: PropTypes.string
+      }),
       surchargeTotal: PropTypes.shape({
         displayAmount: PropTypes.string
       }),
@@ -31,6 +34,7 @@ class OrderCardSummary extends Component {
       const {
         fulfillmentTotal,
         itemTotal,
+        netTotal,
         surchargeTotal,
         taxTotal,
         total
@@ -39,6 +43,7 @@ class OrderCardSummary extends Component {
       return (
         <CartSummary
           isDense
+          displayNet={netTotal && netTotal.displayAmount}
           displayShipping={fulfillmentTotal && fulfillmentTotal.displayAmount}
           displaySubtotal={itemTotal && itemTotal.displayAmount}
           displaySurcharge={surchargeTotal && surchargeTotal.displayAmount}

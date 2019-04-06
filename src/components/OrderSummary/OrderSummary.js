@@ -62,6 +62,7 @@ class OrderSummary extends Component {
       const {
         fulfillmentTotal,
         itemTotal,
+        netTotal,
         surchargeTotal,
         taxTotal,
         total
@@ -71,6 +72,7 @@ class OrderSummary extends Component {
         <OrderSummaryContainer>
           <CartSummary
             isDense
+            displayNet={netTotal && netTotal.displayAmount}
             displayShipping={fulfillmentTotal && fulfillmentTotal.displayAmount}
             displaySubtotal={itemTotal && itemTotal.displayAmount}
             displaySurcharge={surchargeTotal && surchargeTotal.displayAmount}

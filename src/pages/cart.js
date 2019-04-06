@@ -57,6 +57,9 @@ class CartPage extends Component {
         fulfillmentTotal: PropTypes.shape({
           displayAmount: PropTypes.string
         }),
+        netAmonut: PropTypes.shape({
+          displayAmount: PropTypes.string
+        }),
         itemTotal: PropTypes.shape({
           displayAmount: PropTypes.string
         }),
@@ -140,11 +143,12 @@ class CartPage extends Component {
     const { cart, classes } = this.props;
 
     if (cart && cart.checkout && cart.checkout.summary && Array.isArray(cart.items) && cart.items.length) {
-      const { fulfillmentTotal, itemTotal, surchargeTotal, taxTotal, total } = cart.checkout.summary;
+      const { fulfillmentTotal, itemTotal, netTotal, surchargeTotal, taxTotal, total } = cart.checkout.summary;
 
       return (
         <Grid item xs={12} md={3}>
           <CartSummary
+            displayNet={netTotal && netTotal.displayAmount}
             displayShipping={fulfillmentTotal && fulfillmentTotal.displayAmount}
             displaySubtotal={itemTotal && itemTotal.displayAmount}
             displaySurcharge={surchargeTotal && surchargeTotal.displayAmount}

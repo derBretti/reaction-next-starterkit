@@ -20,6 +20,9 @@ class CheckoutSummary extends Component {
         itemTotal: PropTypes.shape({
           displayAmount: PropTypes.string
         }),
+        netTotal: PropTypes.shape({
+          displayAmount: PropTypes.string
+        }),
         taxTotal: PropTypes.shape({
           displayAmount: PropTypes.string
         })
@@ -84,6 +87,7 @@ class CheckoutSummary extends Component {
       const {
         fulfillmentTotal,
         itemTotal,
+        netTotal,
         surchargeTotal,
         taxTotal,
         total
@@ -93,6 +97,7 @@ class CheckoutSummary extends Component {
         <Grid item xs={12} className={classes.summary}>
           <CartSummary
             isDense
+            displayNet={netTotal && netTotal.displayAmount}
             displayShipping={fulfillmentTotal && fulfillmentTotal.displayAmount}
             displaySubtotal={itemTotal && itemTotal.displayAmount}
             displaySurcharge={surchargeTotal && surchargeTotal.displayAmount}
