@@ -32,6 +32,7 @@ services:
       - .:/usr/local/src/reaction-app
       - empty_node_modules:/usr/local/src/reaction-app/node_modules # do not link node_modules in, and persist it between dc up runs
       - node_modules:/usr/local/src/node_modules
+      - ../reaction-component-library/package/dist:/usr/local/src/reaction-app/node_modules/@reactioncommerce/components
 
 volumes:
   web-yarn:
