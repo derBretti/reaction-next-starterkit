@@ -1,5 +1,5 @@
-query catalogItemProductQuery($slugOrId: String!) {
-  catalogItemProduct(slugOrId: $slugOrId) {
+query catalogItemProductQuery($slugOrId: String!, $cartId: ID, $token: String, $accountId: ID, $shopId: ID) {
+  catalogItemProduct(slugOrId: $slugOrId, cartId: $cartId, token: $token, accountId: $accountId, shopId: $shopId) {
     product {
       _id
       productId

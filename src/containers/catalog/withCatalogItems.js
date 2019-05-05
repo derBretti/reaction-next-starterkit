@@ -15,7 +15,7 @@ import catalogItemsQuery from "./catalogItems.gql";
  */
 export default function withCatalogItems(Component) {
   @withTag
-  @inject("primaryShopId", "routingStore", "uiStore")
+  @inject("primaryShopId", "routingStore", "uiStore", "cartStore", "authStore")
   @observer
   class CatalogItems extends React.Component {
     static propTypes = {
@@ -24,11 +24,20 @@ export default function withCatalogItems(Component) {
       tag: PropTypes.shape({
         _id: PropTypes.string.isRequired
       }),
-      uiStore: PropTypes.object.isRequired
+      uiStore: PropTypes.object.isRequired,
+      authStore: PropTypes.shape({
+        accountId: PropTypes.string,
+        isAuthenticated: PropTypes.bool
+      }),
+      cartStore: PropTypes.shape({
+        anonymousCartId: PropTypes.string,
+        anonymousCartToken: PropTypes.string,
+        setAnonymousCartCredentialsFromLocalStorage: PropTypes.func
+      })
     };
 
     render() {
-      const { primaryShopId, routingStore, uiStore, tag } = this.props;
+      const { primaryShopId, routingStore, uiStore, tag, authStore, cartStore } = this.props;
       const [sortBy, sortOrder] = uiStore.sortBy.split("-");
       const tagIds = tag && [tag._id];
       const variables = {
@@ -39,6 +48,19 @@ export default function withCatalogItems(Component) {
         sortByPriceCurrencyCode: uiStore.sortByCurrencyCode,
         sortOrder
       };
+
+      if (cartStore.hasAnonymousCartCredentials) {
+        // Otherwise, set query and variables for fetching an anonymous cart
+        Object.assign(variables, {
+          cartId: cartStore.anonymousCartId,
+          token: cartStore.anonymousCartToken
+        });
+      } else if (authStore.isAuthenticated) {
+        // With an authenticated user, update the cart query to find an authenticated cart
+        Object.assign(variables, {
+          accountId: authStore.accountId
+        });
+      }
 
       return (
         <Query errorPolicy="all" query={catalogItemsQuery} variables={variables}>
