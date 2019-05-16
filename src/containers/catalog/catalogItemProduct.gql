@@ -7,8 +7,6 @@ query catalogItemProductQuery($slugOrId: String!, $cartId: ID, $token: String, $
       slug
       description
       vendor
-      inventoryAvailableToSell
-      inventoryInStock
       isLowQuantity
       isSoldOut
       isBackorder
@@ -84,7 +82,6 @@ query catalogItemProductQuery($slugOrId: String!, $cartId: ID, $token: String, $
         }
         canBackorder
         inventoryAvailableToSell
-        inventoryInStock
         isBackorder
         isSoldOut
         isLowQuantity
@@ -106,7 +103,6 @@ query catalogItemProductQuery($slugOrId: String!, $cartId: ID, $token: String, $
           optionTitle
           canBackorder
           inventoryAvailableToSell
-          inventoryInStock
           isBackorder
           isSoldOut
           isLowQuantity
