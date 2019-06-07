@@ -64,6 +64,7 @@ class OrderSummary extends Component {
         itemTotal,
         netTotal,
         surchargeTotal,
+        taxes,
         taxTotal,
         total
       } = fulfillmentGroup.summary;
@@ -78,6 +79,7 @@ class OrderSummary extends Component {
             displaySurcharge={surchargeTotal && surchargeTotal.displayAmount}
             displayTax={taxTotal && taxTotal.displayAmount}
             displayTotal={total && total.displayAmount}
+            taxes={taxes}
           />
         </OrderSummaryContainer>
       );

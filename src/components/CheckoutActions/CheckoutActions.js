@@ -323,7 +323,7 @@ export default class CheckoutActions extends Component {
     const [fulfillmentGroup] = fulfillmentGroups;
 
     // Order summary
-    const { fulfillmentTotal, itemTotal, netTotal, surchargeTotal, taxTotal, total } = summary;
+    const { fulfillmentTotal, itemTotal, netTotal, surchargeTotal, taxes, taxTotal, total } = summary;
     const checkoutSummary = {
       displayNet: netTotal && netTotal.displayAmount,
       displayShipping: fulfillmentTotal && fulfillmentTotal.displayAmount,
@@ -331,6 +331,7 @@ export default class CheckoutActions extends Component {
       displaySurcharge: surchargeTotal.displayAmount,
       displayTotal: total.displayAmount,
       displayTax: taxTotal && taxTotal.displayAmount,
+      taxes: taxes,
       items
     };
 

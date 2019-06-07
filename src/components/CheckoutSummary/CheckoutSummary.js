@@ -23,6 +23,7 @@ class CheckoutSummary extends Component {
         netTotal: PropTypes.shape({
           displayAmount: PropTypes.string
         }),
+        taxes: PropTypes.arrayOf(PropTypes.object),
         taxTotal: PropTypes.shape({
           displayAmount: PropTypes.string
         })
@@ -89,6 +90,7 @@ class CheckoutSummary extends Component {
         itemTotal,
         netTotal,
         surchargeTotal,
+        taxes,
         taxTotal,
         total
       } = cart.checkout.summary;
@@ -103,6 +105,7 @@ class CheckoutSummary extends Component {
             displaySurcharge={surchargeTotal && surchargeTotal.displayAmount}
             displayTax={taxTotal && taxTotal.displayAmount}
             displayTotal={total && total.displayAmount}
+            taxes={taxes}
             itemsQuantity={cart.totalItemQuantity}
           />
         </Grid>

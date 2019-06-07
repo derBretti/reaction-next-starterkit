@@ -143,7 +143,7 @@ class CartPage extends Component {
     const { cart, classes } = this.props;
 
     if (cart && cart.checkout && cart.checkout.summary && Array.isArray(cart.items) && cart.items.length) {
-      const { fulfillmentTotal, itemTotal, netTotal, surchargeTotal, taxTotal, total } = cart.checkout.summary;
+      const { fulfillmentTotal, itemTotal, netTotal, surchargeTotal, taxes, taxTotal, total } = cart.checkout.summary;
 
       return (
         <Grid item xs={12} md={3}>
@@ -155,6 +155,7 @@ class CartPage extends Component {
             displayTax={taxTotal && taxTotal.displayAmount}
             displayTotal={total && total.displayAmount}
             itemsQuantity={cart.totalItemQuantity}
+            taxes={taxes}
           />
           <div className={classes.checkoutButtonsContainer}>
             <CheckoutButtons />

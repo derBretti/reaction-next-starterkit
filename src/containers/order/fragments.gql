@@ -131,6 +131,28 @@ fragment OrderCommon on Order {
         amount
         displayAmount
       }
+      taxes {
+        _id
+        country
+        jurisdictionId
+        postal
+        region
+        sourcing
+        tax {
+          amount
+          displayAmount
+        }
+        taxName
+        taxRate {
+          amount
+          displayPercent
+          percent
+        }
+        taxableAmount {
+          amount
+          displayAmount
+        }
+      }
       taxTotal {
         amount
         displayAmount
